@@ -29,8 +29,10 @@ namespace DiscourseSsoFeature
             var discoursePayloadBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(discoursePayloadRawString));
             var discoursePayloadUrlEncoded = discoursePayloadBase64.UrlEncode();
             var sha256 = new HMACSHA256(Encoding.UTF8.GetBytes(this.DiscourseSsoSecret));
+            //signature needs to be generated off the base64 payload, NOT the url ended base64 payload...
+            //https://meta.discourse.org/t/official-single-sign-on-for-discourse/13045/71
             signature =
-                HashEncode(sha256.ComputeHash(Encoding.UTF8.GetBytes(discoursePayloadUrlEncoded)));
+                HashEncode(sha256.ComputeHash(Encoding.UTF8.GetBytes(discoursePayloadBase64)));
             return discoursePayloadUrlEncoded;
         }
 

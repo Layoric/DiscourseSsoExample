@@ -49,7 +49,7 @@
 
     </div>
     <div class="container">
-        @if (!IsAuthenticated && Request.QueryString["DiscourseSsoRef"] != null)
+        @if (Request.QueryString["DiscourseSsoRef"] != null)
         {
             var discourseKey = Request.QueryString["DiscourseSsoRef"];
             <div class="form-group col-lg-12 col-md-12 col-sm-12">

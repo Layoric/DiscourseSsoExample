@@ -68,7 +68,7 @@ namespace DiscourseSsoExample1
             inMemoryAuthRepo.CreateUserAuth(
                 new UserAuth {UserName = "mythz", DisplayName = "mythz", Email = "demisbellot@gmail.com"}, "Discourse1");
             inMemoryAuthRepo.CreateUserAuth(
-                new UserAuth { UserName = "dreid", DisplayName = "dreid", Email = "dreid@test.com" }, "Discourse1");
+                new UserAuth { UserName = "dreid", DisplayName = "dreid15", Email = "dreid@test.com" }, "Discourse1");
         }
     }
 
