@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="helloApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="helloApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="helloApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html lang="en" ng-app="helloApp">  <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Discourse Example App</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--build:css /lib/css/bootstrap.min.css-->
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+        <!-- endbuild -->
+        <!--build:css /css/app.min.css-->
+        <link rel="stylesheet" href="/css/app.css" />
+        <!-- endbuild -->
+        <!-- build:js /lib/js/jquery.min.js -->
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <!-- endbuild -->
+        <!-- build:js /lib/js/bootstrap.min.js -->
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <!-- endbuild -->
+        <!-- build:js /lib/js/modernizr.min.js -->
+        <script src="/bower_components/modernizr/modernizr.js"></script>
+        <!-- endbuild -->
+    </head>
+    <body>
+        <div class="navbar navbar-inverse" role="navigation" ng-controller="navigationCtrl">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Discourse Example App</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li ng-class="{ active: IsRouteActive('/')}"><a href="/">Home</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    <div class="container" ng-view>
+
+    </div>
+    <div class="container">
+        @if (!IsAuthenticated && Request.QueryString["DiscourseSsoRef"] != null)
+        {
+            var discourseKey = Request.QueryString["DiscourseSsoRef"];
+            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                <form action="/auth/login">
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input class="form-control" type="text" name="UserName" ng-model="userLogin.UserName" />
+                    </div>
+                    <div class="form-group">
+                        <label>Password:</label>
+                        <input class="form-control" type="password" name="Password" ng-model="userLogin.Password"/>
+                    </div>
+                    <input type="hidden" name="DiscourseSsoRef" value="@discourseKey" />
+                    <button class="btn btn-primary">Sign In</button>
+                </form>
+            </div>
+        }
+    </div>
+        <!-- build:js /lib/js/angular.min.js -->
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/angular-route/angular-route.js"></script>
+        <!-- endbuild -->
+        <!-- build:js /js/app.min.js -->
+        <script src="/js/hello/controllers.js"></script>
+        <script src="/js/navigation/controllers.js"></script>
+        <script src="/js/app.js"></script>
+        <!-- endbuild -->
+    </body>
+</html>
